@@ -150,6 +150,7 @@ void keyPressed() {
     points.clear(); // 점 리스트 초기화
     resetCount = 0; // 초기화 횟수 초기화
     isNewWord = true; // 새로운 단어 입력 상태로 변경
+    showStartMessage = true; // 시작 메시지 다시 표시
   } 
   // 스페이스 바 또는 지우기(Backspace) 키 입력 시 텍스트 초기화 및 위치 변경, 초기화 횟수 증가
   else if (key == ' ' || keyCode == BACKSPACE) {
@@ -161,6 +162,7 @@ void keyPressed() {
   } 
   // 다른 키 입력 시 텍스트에 추가하고 새로운 점 생성
   else {
+        showStartMessage = false; // 다른 키 입력 시 시작 메시지 사라짐
         typedText += key;
 
     // 새로운 단어 입력 시에만 소리 재생 및 페이드 아웃 시작
