@@ -55,7 +55,7 @@ void draw() {
         fill(0); // 검정색 텍스트
         textSize(30);
         textAlign(CENTER, CENTER);
-        text("Type anything.\nTo start over from the beginning, press Enter", width / 2, height / 2);
+        text("Type anything.\nTo start over from the beginning, press Enter", (width+200) / 2, height / 2);
     } else
        if (resetCount >= 5) {
         for (Point p : points) {
@@ -106,7 +106,7 @@ void draw() {
     // 텍스트 표시 (메인 캔버스에 그림)
     fill(255, 0, 0);
     float textWidth = textWidth(typedText);
-    textX = constrain(textX, 200 + textWidth , width - textWidth); // 200만큼 이동
+    textX = constrain(textX, 200 + textWidth/2 , width - textWidth); // 200만큼 이동
     textY = constrain(textY, 25, height - 25);
     text(typedText, textX, textY); // 텍스트 출력
 
@@ -136,11 +136,11 @@ void draw() {
 void keyPressed() {
   // Shift 또는 Caps Lock 키 입력 무시
   
-  showStartMessage = false;
-  
-  if (keyCode == SHIFT || keyCode == CODED) {
+  if (keyCode == SHIFT || (keyCode == CODED && keyEvent.getKeyCode() == java.awt.event.KeyEvent.VK_CAPS_LOCK)) {
     return;
   }
+  
+    showStartMessage = false;
 
   // 엔터 키 입력 시 텍스트, 점, 선 초기화
   if (key == ENTER || key == RETURN) {
