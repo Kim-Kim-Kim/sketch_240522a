@@ -24,6 +24,7 @@ String typedText = "";
 float textX, textY;
 int resetCount = 0;
 boolean isNewWord = true;
+boolean showStartMessage = true;
 
 SinOsc sinOsc;
 int fadeOutStartTime = 0;
@@ -49,7 +50,14 @@ void setup() {
 
 void draw() {
     background(255, 60);
- if (resetCount >= 5) {
+    
+        if (showStartMessage) { // 시작 메시지 표시 여부 확인
+        fill(0); // 검정색 텍스트
+        textSize(30);
+        textAlign(CENTER, CENTER);
+        text("Type anything.\nTo start over from the beginning, press Enter", width / 2, height / 2);
+    } else
+       if (resetCount >= 5) {
         for (Point p : points) {
             for (Point other : points) {
                 if (p != other) {
@@ -98,7 +106,7 @@ void draw() {
     // 텍스트 표시 (메인 캔버스에 그림)
     fill(255, 0, 0);
     float textWidth = textWidth(typedText);
-    textX = constrain(textX, 200, width - textWidth); // 200만큼 이동
+    textX = constrain(textX, 200 + textWidth , width - textWidth); // 200만큼 이동
     textY = constrain(textY, 25, height - 25);
     text(typedText, textX, textY); // 텍스트 출력
 
@@ -127,6 +135,9 @@ void draw() {
 // 키 입력 처리 함수
 void keyPressed() {
   // Shift 또는 Caps Lock 키 입력 무시
+  
+  showStartMessage = false;
+  
   if (keyCode == SHIFT || keyCode == CODED) {
     return;
   }
