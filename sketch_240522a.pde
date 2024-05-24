@@ -106,7 +106,7 @@ void draw() {
     // 텍스트 표시 (메인 캔버스에 그림)
     fill(255, 0, 0);
     float textWidth = textWidth(typedText);
-    textX = constrain(textX, 200 + textWidth/2 , width - textWidth); // 200만큼 이동
+    textX = constrain(textX, 200 + textWidth/2 , width - textWidth/2); // 200만큼 이동
     textY = constrain(textY, 25, height - 25);
     text(typedText, textX, textY); // 텍스트 출력
 
